@@ -10,6 +10,7 @@ import { MemberDetailResolver } from './_resolvers/member-detail-resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit-resolver copy';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { ListsResolver } from './_resolvers/lists.resolver';
 
 export const appRoutes: Routes = [
 
@@ -28,7 +29,7 @@ export const appRoutes: Routes = [
             {path: 'member/edit', component: MemberEditComponent,
                 resolve: {user: MemberEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             { path: 'messages', component: MessagesComponent},
-            { path: 'lists', component: ListsComponent},
+            { path: 'lists', component: ListsComponent, resolve: {users: ListsResolver}},
         ]
     },
     // Everthing that is not here is gonna be redirected to this link, so here it's home. The order is important.
